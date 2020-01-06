@@ -1,0 +1,24 @@
+{
+  "name": "recipe-nextjs-apollo",
+  "version": "1.0.0",
+  "description": "Recipe webapp with instagram-like features",
+  "main": "index.js",
+  "author": "Jan Mathew",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^2.9.15",
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "graphql-tools": "^4.0.6",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
