@@ -6,9 +6,15 @@ const { resolvers } = require('./graphql/resolvers')
 const { typeDefs } = require('./graphql/schemas')
 
 const { mongoUri } = require('./keys')
+const Recipe = require('./models/Recipe')
+const User = require('./models/User')
 
 const app = express()
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: { Recipe, User }
+})
 server.applyMiddleware({ app })
 
 const PORT = process.env.PORT || 5000
