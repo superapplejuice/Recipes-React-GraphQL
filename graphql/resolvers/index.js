@@ -1,6 +1,12 @@
 exports.resolvers = {
   Query: {
-    recipesList: () => {}
+    recipesList: async (root, args, { Recipe }) => {
+      try {
+        return await Recipe.find()
+      } catch (error) {
+        throw error
+      }
+    }
   },
   Mutation: {
     createRecipe: async (root, { recipeInput }, { Recipe }) => {
