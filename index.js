@@ -1,6 +1,5 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
 
 const { ApolloServer } = require('apollo-server-express')
 const { resolvers } = require('./graphql/resolvers')
@@ -11,8 +10,6 @@ const { mongoUri } = require('./keys')
 const app = express()
 const server = new ApolloServer({ typeDefs, resolvers })
 server.applyMiddleware({ app })
-
-app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 5000
 mongoose
