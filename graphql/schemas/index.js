@@ -27,17 +27,12 @@ exports.typeDefs = gql`
     username: String
   }
 
-  type RootQuery {
+  type Query {
     recipesList: [Recipe]!
     usersList: [User]!
   }
 
-  type RootMutation {
+  type Mutation {
     createRecipe(recipeInput: recipeInput): Recipe
-  }
-
-  schema {
-    query: RootQuery
-    mutation: RootMutation
   }
 `
