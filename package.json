@@ -5,6 +5,11 @@
   "main": "index.js",
   "author": "Jan Mathew",
   "license": "MIT",
+  "scripts": {
+    "server": "nodemon",
+    "client": "yarn --cwd client start",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
+  },
   "dependencies": {
     "apollo-server-express": "^2.9.15",
     "bcrypt": "^3.0.7",
