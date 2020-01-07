@@ -1,6 +1,6 @@
 exports.resolvers = {
   Query: {
-    recipesList: async (root, args, { Recipe }) => {
+    recipesList: async (parent, args, { Recipe }, info) => {
       try {
         return await Recipe.find()
       } catch (error) {
@@ -9,7 +9,7 @@ exports.resolvers = {
     }
   },
   Mutation: {
-    createRecipe: async (root, { recipeInput }, { Recipe }) => {
+    createRecipe: async (parent, { recipeInput }, { Recipe }, info) => {
       const {
         name,
         category,
