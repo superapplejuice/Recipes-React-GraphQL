@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "server": "nodemon server",
-    "client": "yarn --cwd client start",
+    "client": "next client",
+    "start": "next start",
+    "build": "next build",
     "dev": "concurrently \"yarn server\" \"yarn client\""
   },
   "dependencies": {
