@@ -1,36 +1,11 @@
+const rootQueries = require('./rootQueries')
+const rootMutations = require('./rootMutations')
+
 exports.resolvers = {
   Query: {
-    recipesList: async (parent, args, { Recipe }, info) => {
-      try {
-        return await Recipe.find()
-      } catch (error) {
-        throw error
-      }
-    }
+    ...rootQueries
   },
   Mutation: {
-    createRecipe: async (parent, { recipeInput }, { Recipe }, info) => {
-      const {
-        name,
-        category,
-        description,
-        instructions,
-        username
-      } = recipeInput
-
-      const newRecipe = new Recipe({
-        name,
-        category,
-        description,
-        instructions,
-        username
-      })
-
-      try {
-        return await newRecipe.save()
-      } catch (error) {
-        throw error
-      }
-    }
+    ...rootMutations
   }
 }
