@@ -1,3 +1,5 @@
+const { hash } = require('bcrypt')
+
 const { createToken } = require('../../utils')
 const { jwtKey } = require('../../keys')
 
@@ -31,11 +33,13 @@ module.exports = {
       throw new Error('Email already taken')
     }
 
+    const hashPassword = await hash(password, 15)
+
     try {
       const newUser = new User({
         username,
         email,
-        password
+        password: hashPassword
       }).save()
 
       return { token: createToken(newUser, jwtKey, '1hr') }
