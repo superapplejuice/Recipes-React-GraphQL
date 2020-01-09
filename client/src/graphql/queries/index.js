@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost'
 
-export const fetchRecipesList = gql`
+export const FETCH_RECIPES = gql`
   query {
     recipesList {
       name

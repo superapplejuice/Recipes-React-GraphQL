@@ -1,8 +1,16 @@
-require('react-hot-loader')
-
 import React from 'react'
 import { render } from 'react-dom'
+import { ApolloProvider } from 'react-apollo'
 
-import AppRoot from './app-root'
+import { client } from './graphql'
 
-render(<AppRoot />, document.querySelector('#root'))
+import App from './components/App'
+
+const rootElement = document.querySelector('#root')
+const renderApp = () => (
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>
+)
+
+render(renderApp(), rootElement)

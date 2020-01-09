@@ -1,12 +1,12 @@
 import React from 'react'
 import { Query } from 'react-apollo'
 
-import { fetchRecipesList } from '../graphql/queries'
+import { FETCH_RECIPES } from '../graphql/queries'
 
 const Home = () => (
   <div>
     <div>Home</div>
-    <Query query={fetchRecipesList}>
+    <Query query={FETCH_RECIPES}>
       {({ data, loading, error }) => {
         if (loading) return <div>Loading...</div>
         if (error) return <div>Error!</div>
