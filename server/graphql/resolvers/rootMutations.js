@@ -1,4 +1,5 @@
 const { createToken } = require('../../utils')
+const { jwtKey } = require('../../keys')
 
 module.exports = {
   createRecipe: async (parent, { recipeInput }, { Recipe }) => {
@@ -21,9 +22,13 @@ module.exports = {
   userRegister: async (parent, { registerInput }, { User }) => {
     const { username, email, password } = registerInput
 
-    const user = await User.findOne({ username })
-    if (user) {
+    const existingUser = await User.findOne({ username })
+    const existingEmail = await User.findOne({ email })
+
+    if (existingUser) {
       throw new Error('User already exists')
+    } else if (existingEmail) {
+      throw new Error('Email already taken')
     }
 
     const newUser = await new User({
@@ -32,6 +37,10 @@ module.exports = {
       password
     }).save()
 
-    return { token: createToken(newUser, jwtKey, '1hr') }
+    try {
+      return { token: createToken(newUser, jwtKey, '1hr') }
+    } catch (error) {
+      throw error
+    }
   }
 }
