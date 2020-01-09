@@ -1,7 +1,7 @@
 import React from 'react'
 import { Router, Switch, Route, Redirect } from 'react-router-dom'
 
-import history from '../utils/history'
+import history from '../utils/functions/history'
 
 import Home from './Home'
 import Login from './auth/Login'

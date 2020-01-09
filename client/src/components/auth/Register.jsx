@@ -5,7 +5,7 @@ import { Mutation } from 'react-apollo'
 
 import { REGISTER_USER } from '../../graphql/mutations'
 
-import FormField from '../../utils/FormField'
+import FormField from '../../utils/components/FormField'
 
 const Register = () => {
   const whitespaceRegex = /^\S+$/
