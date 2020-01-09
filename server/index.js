@@ -17,6 +17,18 @@ const server = new ApolloServer({
 })
 server.applyMiddleware({ app })
 
+// send routes to index.html if they don't exist in server || dist folders
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path')
+
+  // serve production assets if route exists
+  app.use(express.static(path.resolve(__dirname, '../client/dist')))
+  // serve index.html if route is not recognized
+  app.get('*', (req, res) =>
+    res.sendFile(__dirname, '../client/dist', 'index.html')
+  )
+}
+
 const PORT = process.env.PORT || 5000
 mongoose
   .connect(mongoUri, {
