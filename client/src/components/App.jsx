@@ -1,23 +1,21 @@
 import React from 'react'
-import { Query } from 'react-apollo'
+import { Router, Switch, Route } from 'react-router-dom'
 
-import { fetchRecipesList } from '../graphql/queries'
+import history from '../history'
+
+import Home from './Home'
+import Login from './auth/Login'
+import Register from './auth/Register'
 
 const App = () => {
   return (
-    <div>
-      <div>Home</div>
-      <Query query={fetchRecipesList}>
-        {({ data, loading, error }) => {
-          if (loading) return <div>Loading...</div>
-          if (error) return <div>Error!</div>
-
-          console.log(data)
-
-          return <p>Recipes</p>
-        }}
-      </Query>
-    </div>
+    <Router history={history}>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route path='/auth/login' component={Login} />
+        <Route path='/auth/register' component={Register} />
+      </Switch>
+    </Router>
   )
 }
 
