@@ -31,13 +31,13 @@ module.exports = {
       throw new Error('Email already taken')
     }
 
-    const newUser = await new User({
-      username,
-      email,
-      password
-    }).save()
-
     try {
+      const newUser = new User({
+        username,
+        email,
+        password
+      }).save()
+
       return { token: createToken(newUser, jwtKey, '1hr') }
     } catch (error) {
       throw error
