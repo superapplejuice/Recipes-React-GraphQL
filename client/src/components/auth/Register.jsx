@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as yup from 'yup'
 import { Formik } from 'formik'
 import { Mutation } from 'react-apollo'
@@ -8,6 +8,9 @@ import { REGISTER_USER } from '../../graphql/mutations'
 import FormField from '../../utils/components/FormField'
 
 const Register = () => {
+  const [formValues, setFormValues] = useState({})
+  const [formErrors, setFormErrors] = useState(null)
+
   const whitespaceRegex = /^\S+$/
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 
@@ -42,23 +45,30 @@ const Register = () => {
       .required('Please confirm your password')
   })
 
+  const { username, email, password } = formValues
+
   return (
     <div>
       <div>Register Form</div>
-      <Mutation mutation={REGISTER_USER}>
+      <Mutation
+        mutation={REGISTER_USER}
+        variables={{ username, email, password }}
+      >
         {userRegister => {
           return (
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={async (values, { setSubmitting }) => {
-                const { username, email, password } = values
-
                 try {
-                  console.log(username, email, password)
+                  setFormValues(values)
+                  const res = await userRegister()
+                  console.log(res.data)
                   setSubmitting(false)
-                } catch (error) {
-                  console.log(error)
+                } catch (err) {
+                  const errMessage = err.toString().slice(22)
+                  setFormErrors(errMessage)
+                  setSubmitting(false)
                 }
               }}
             >
@@ -87,6 +97,7 @@ const Register = () => {
                   <button type='submit' disabled={isSubmitting}>
                     Submit
                   </button>
+                  {formErrors && formErrors}
                 </form>
               )}
             </Formik>
