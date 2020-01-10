@@ -17,8 +17,8 @@ module.exports = {
 
     try {
       return newRecipe
-    } catch (error) {
-      throw error
+    } catch (err) {
+      throw err
     }
   },
   userRegister: async (parent, { registerInput }, { User }) => {
@@ -43,8 +43,8 @@ module.exports = {
       }).save()
 
       return { token: createToken(newUser, jwtKey, '1hr') }
-    } catch (error) {
-      throw error
+    } catch (err) {
+      throw err
     }
   }
 }
