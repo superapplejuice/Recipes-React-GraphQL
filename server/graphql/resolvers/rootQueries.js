@@ -11,7 +11,7 @@ module.exports = {
       return null
     }
 
-    const user = await User.findOne({ email: currentUser.email }).poulate(
+    const user = await User.findOne({ email: currentUser.email }).populate(
       'favourites'
     )
 
