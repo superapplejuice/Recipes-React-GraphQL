@@ -1,4 +1,4 @@
-const { hash } = require('bcrypt')
+const { hash, compare } = require('bcrypt')
 
 const { createToken } = require('../../utils')
 const { jwtKey } = require('../../keys')
@@ -43,6 +43,25 @@ module.exports = {
       }).save()
 
       return { token: createToken(newUser, jwtKey, '1hr') }
+    } catch (err) {
+      throw err
+    }
+  },
+  userLogin: async (parent, { loginInput }, { User }) => {
+    const { email, password } = loginInput
+
+    const user = await User.findOne({ email })
+    if (!user) {
+      throw new Error('Email does not exist')
+    }
+
+    const passCompare = await compare(password, user.password)
+    if (!passCompare) {
+      throw new Error('Password is incorrect!')
+    }
+
+    try {
+      return { token: createToken(user, jwtKey, '1hr') }
     } catch (err) {
       throw err
     }
