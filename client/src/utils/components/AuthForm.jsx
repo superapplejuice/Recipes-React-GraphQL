@@ -42,6 +42,7 @@ const AuthForm = ({
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               try {
                 setErrors(null)
+                setSuccess(false)
                 setFormValues(values)
 
                 const { data } = await mutationFunction()
