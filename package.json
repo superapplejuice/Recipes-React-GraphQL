@@ -1,5 +1,5 @@
 {
-  "name": "recipe-nextjs-apollo",
+  "name": "recipe-react-apollo",
   "version": "1.0.0",
   "description": "Recipe webapp with instagram-like features",
   "main": "index.js",
