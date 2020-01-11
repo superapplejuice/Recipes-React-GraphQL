@@ -19,12 +19,13 @@ exports.typeDefs = gql`
     password: String!
     email: String!
     joinDate: String
-    favorites: [Recipe]
+    favourites: [Recipe]
   }
 
   type Query {
     recipesList: [Recipe]!
     usersList: [User]!
+    currentUser: User
   }
 
   # mutations
