@@ -3,6 +3,8 @@ import { Query } from 'react-apollo'
 
 import { FETCH_RECIPES } from '../../graphql/queries'
 
+import RecipesList from '../recipe/RecipesList'
+
 const Home = () => (
   <div>
     <div>Home</div>
@@ -11,7 +13,7 @@ const Home = () => (
         if (loading) return <div>Loading...</div>
         if (error) return <div>Error!</div>
 
-        return <p>Recipes</p>
+        return <RecipesList recipes={data.recipesList} />
       }}
     </Query>
   </div>
