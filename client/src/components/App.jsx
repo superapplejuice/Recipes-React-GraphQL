@@ -11,6 +11,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import Search from './recipe/Search'
 import AddRecipe from './recipe/AddRecipe'
+import RecipePage from './recipe/RecipePage'
 
 import '../styles/App.css'
 
@@ -27,6 +28,7 @@ const App = ({ refetch, session }) => (
       />
       <Route path='/recipe/search' component={Search} />
       <Route path='/recipe/add' component={AddRecipe} />
+      <Route path='/recipe/_id' component={RecipePage} />
     </Switch>
   </Router>
 )
