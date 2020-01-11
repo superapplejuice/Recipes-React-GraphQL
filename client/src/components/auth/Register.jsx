@@ -1,18 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as yup from 'yup'
-import { Formik } from 'formik'
-import { Mutation } from 'react-apollo'
 
 import { REGISTER_USER } from '../../graphql/mutations'
 
+import AuthForm from '../../utils/components/AuthForm'
 import FormField from '../../utils/components/FormField'
 
 const Register = () => {
-  const [formValues, setFormValues] = useState({})
-  const [formErrors, setFormErrors] = useState(null)
-
   const whitespaceRegex = /^\S+$/
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+  const formTitle = 'Register'
+  const successMessage = 'User created successfully!'
 
   const initialValues = {
     username: '',
@@ -45,70 +43,31 @@ const Register = () => {
       .required('Please confirm your password')
   })
 
-  const { username, email, password } = formValues
-
   return (
-    <div>
-      <div>Register Form</div>
-      <Mutation
-        mutation={REGISTER_USER}
-        variables={{ username, email, password }}
-      >
-        {userRegister => {
-          return (
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={async (values, { setSubmitting, resetForm }) => {
-                try {
-                  setFormValues(values)
-                  const { data } = await userRegister()
-                  console.log(data)
-                  resetForm(initialValues)
-                  setSubmitting(false)
-                } catch (err) {
-                  const errMessage = err.toString().slice(22)
-                  setFormErrors(errMessage)
-                  setSubmitting(false)
-                }
-              }}
-            >
-              {({ handleSubmit, isSubmitting, handleReset }) => (
-                <form onSubmit={handleSubmit}>
-                  <div>
-                    <FormField name='username' type='text' label='Username' />
-                  </div>
-                  <div>
-                    <FormField name='email' type='email' label='Email' />
-                  </div>
-                  <div>
-                    <FormField
-                      name='password'
-                      type='password'
-                      label='Password'
-                    />
-                  </div>
-                  <div>
-                    <FormField
-                      name='passwordConfirm'
-                      type='password'
-                      label='Confirm Password'
-                    />
-                  </div>
-                  <button type='submit' disabled={isSubmitting}>
-                    Submit
-                  </button>
-                  <button type='button' onClick={handleReset}>
-                    Clear Fields
-                  </button>
-                  {formErrors && formErrors}
-                </form>
-              )}
-            </Formik>
-          )
-        }}
-      </Mutation>
-    </div>
+    <AuthForm
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      mutation={REGISTER_USER}
+      formTitle={formTitle}
+      successMessage={successMessage}
+    >
+      <div>
+        <FormField name='username' type='text' label='Username' />
+      </div>
+      <div>
+        <FormField name='email' type='email' label='Email' />
+      </div>
+      <div>
+        <FormField name='password' type='password' label='Password' />
+      </div>
+      <div>
+        <FormField
+          name='passwordConfirm'
+          type='password'
+          label='Confirm Password'
+        />
+      </div>
+    </AuthForm>
   )
 }
 
