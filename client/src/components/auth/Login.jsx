@@ -8,7 +8,6 @@ import FormField from '../../utils/components/FormField'
 
 const Login = ({ refetch }) => {
   const formTitle = 'Login'
-  const successMessage = 'Login successful!'
 
   const initialValues = {
     email: '',
@@ -29,7 +28,6 @@ const Login = ({ refetch }) => {
       validationSchema={validationSchema}
       mutation={LOGIN_USER}
       formTitle={formTitle}
-      successMessage={successMessage}
       refetch={refetch}
     >
       <div>

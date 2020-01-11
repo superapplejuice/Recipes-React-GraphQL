@@ -3,35 +3,32 @@ import { Formik } from 'formik'
 import { Mutation } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 
-import history from '../functions/history'
-
 const AuthForm = ({
   initialValues,
   validationSchema,
   mutation,
   location,
+  history,
   formTitle,
-  successMessage,
   refetch,
   children
 }) => {
   const [formValues, setFormValues] = useState({})
   const [errors, setErrors] = useState(null)
-  const [success, setSuccess] = useState(false)
 
   const { username, email, password } = formValues
   const { pathname } = location
 
   const setVariables = () => {
-    return pathname === '/auth/register'
-      ? { username, email, password }
-      : { email, password }
+    return pathname === '/auth/login'
+      ? { email, password }
+      : { username, email, password }
   }
 
-  const setDataHeader = data => {
-    return pathname === '/auth/register'
-      ? data.userRegister.token
-      : data.userLogin.token
+  const setDataHeaders = data => {
+    return pathname === '/auth/login'
+      ? data.userLogin.token
+      : data.userRegister.token
   }
 
   return (
@@ -42,23 +39,17 @@ const AuthForm = ({
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={async (values, { setSubmitting, resetForm }) => {
+            onSubmit={async (values, { setSubmitting }) => {
               try {
                 setErrors(null)
-                setSuccess(false)
                 setFormValues(values)
 
                 const { data } = await mutationFunction()
-                localStorage.setItem('token', setDataHeader(data))
-                await refetch()
-
-                resetForm(initialValues)
-                setSuccess(true)
-                setSubmitting(false)
+                localStorage.setItem('token', setDataHeaders(data))
+                refetch()
 
                 history.push('/')
               } catch (err) {
-                setSuccess(false)
                 const errMessage = err.toString().slice(22)
 
                 setErrors(errMessage)
@@ -80,7 +71,6 @@ const AuthForm = ({
                 <div>
                   {loading && <p>Submitting...</p>}
                   {errors && <p>{errors}</p>}
-                  {success && <p>{successMessage}</p>}
                 </div>
               </form>
             )}

@@ -10,7 +10,6 @@ const Register = ({ refetch }) => {
   const whitespaceRegex = /^\S+$/
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
   const formTitle = 'Register'
-  const successMessage = 'User created successfully!'
 
   const initialValues = {
     username: '',
@@ -49,7 +48,6 @@ const Register = ({ refetch }) => {
       validationSchema={validationSchema}
       mutation={REGISTER_USER}
       formTitle={formTitle}
-      successMessage={successMessage}
       refetch={refetch}
     >
       <div>
