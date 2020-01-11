@@ -8,6 +8,7 @@ import Navbar from './Navbar'
 import Home from './Home'
 import Login from './auth/Login'
 import Register from './auth/Register'
+import Search from './recipe/Search'
 
 const App = ({ refetch }) => {
   return (
@@ -20,6 +21,7 @@ const App = ({ refetch }) => {
           path='/auth/register'
           render={() => <Register refetch={refetch} />}
         />
+        <Route path='/recipe/search' component={Search} />
       </Switch>
     </Router>
   )
