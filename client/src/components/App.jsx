@@ -14,10 +14,10 @@ import AddRecipe from './recipe/AddRecipe'
 
 import '../styles/App.css'
 
-const App = ({ refetch }) => {
+const App = ({ refetch, session }) => {
   return (
     <Router history={history}>
-      <Navbar />
+      <Navbar session={session} />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/profile' component={Profile} />

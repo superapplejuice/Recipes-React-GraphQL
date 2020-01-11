@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Navbar = () => {
-  const auth = false
-
+const Navbar = ({ session }) => {
   const handleAuth = () => {
-    return auth ? (
+    return session && session.currentUser ? (
       <Fragment>
         <NavLink to='/recipe/add'>Add Recipe</NavLink>
         <NavLink to='/profile'>Profile</NavLink>
