@@ -4,6 +4,7 @@ import { Router, Switch, Route } from 'react-router-dom'
 import history from '../utils/functions/history'
 import withSession from '../utils/functions/withSession'
 
+import Navbar from './Navbar'
 import Home from './Home'
 import Login from './auth/Login'
 import Register from './auth/Register'
@@ -11,6 +12,7 @@ import Register from './auth/Register'
 const App = ({ refetch }) => {
   return (
     <Router history={history}>
+      <Navbar />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/auth/login' render={() => <Login refetch={refetch} />} />
