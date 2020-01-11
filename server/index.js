@@ -1,15 +1,40 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
+const { verify } = require('jsonwebtoken')
 
 const { ApolloServer } = require('apollo-server-express')
 const { resolvers } = require('./graphql/resolvers')
 const { typeDefs } = require('./graphql/schemas')
 
-const { mongoUri } = require('./keys')
+const { mongoUri, jwtKey } = require('./keys')
 const Recipe = require('./models/Recipe')
 const User = require('./models/User')
 
 const app = express()
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+  })
+)
+
+app.use((req, res, next) => {
+  const token = req.headers['authorization']
+
+  if (token !== 'null') {
+    try {
+      const currentUser = verify(token, jwtKey)
+      console.log(currentUser)
+    } catch (err) {
+      throw err
+    }
+  }
+
+  return next()
+})
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
