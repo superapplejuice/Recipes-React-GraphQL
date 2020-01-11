@@ -59,11 +59,12 @@ const Register = () => {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={async (values, { setSubmitting }) => {
+              onSubmit={async (values, { setSubmitting, resetForm }) => {
                 try {
                   setFormValues(values)
-                  const res = await userRegister()
-                  console.log(res.data)
+                  const { data } = await userRegister()
+                  console.log(data)
+                  resetForm(initialValues)
                   setSubmitting(false)
                 } catch (err) {
                   const errMessage = err.toString().slice(22)
@@ -72,7 +73,7 @@ const Register = () => {
                 }
               }}
             >
-              {({ handleSubmit, isSubmitting }) => (
+              {({ handleSubmit, isSubmitting, handleReset }) => (
                 <form onSubmit={handleSubmit}>
                   <div>
                     <FormField name='username' type='text' label='Username' />
@@ -96,6 +97,9 @@ const Register = () => {
                   </div>
                   <button type='submit' disabled={isSubmitting}>
                     Submit
+                  </button>
+                  <button type='button' onClick={handleReset}>
+                    Clear Fields
                   </button>
                   {formErrors && formErrors}
                 </form>
