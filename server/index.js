@@ -17,15 +17,15 @@ const server = new ApolloServer({
 })
 server.applyMiddleware({ app })
 
-// send routes to index.html if they don't exist in server || dist folders
+// send routes to index.html if they don't exist in server || build folders
 if (process.env.NODE_ENV === 'production') {
   const path = require('path')
 
   // serve production assets if route exists
-  app.use(express.static(path.resolve(__dirname, '../client/dist')))
+  app.use(express.static(path.resolve(__dirname, '../client/build')))
   // serve index.html if route is not recognized
   app.get('*', (req, res) =>
-    res.sendFile(__dirname, '../client/dist', 'index.html')
+    res.sendFile(__dirname, '../client/build', 'index.html')
   )
 }
 
@@ -38,7 +38,7 @@ mongoose
   })
   .then(
     app.listen(PORT, () =>
-      console.log(`GraphQL on port ${PORT}${server.graphqlPath}`)
+      console.log(`GraphQL running on port ${PORT}${server.graphqlPath}`)
     )
   )
   .catch(error => console.log(error))
