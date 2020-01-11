@@ -11,7 +11,7 @@ export const client = new ApolloClient({
       headers: { authorization: token }
     })
   },
-  onError: errors => {
-    errors && console.log(errors)
+  onError: ({ networkError }) => {
+    networkError && console.log(networkError)
   }
 })
