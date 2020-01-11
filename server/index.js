@@ -66,4 +66,4 @@ mongoose
       console.log(`GraphQL running on port ${PORT}${server.graphqlPath}`)
     )
   )
-  .catch(error => console.log(error))
+  .catch(error => console.error(error))

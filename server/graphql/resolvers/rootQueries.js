@@ -10,14 +10,13 @@ module.exports = {
     if (!currentUser) {
       return null
     }
-    console.log(currentUser)
 
     const user = await User.findOne({ email: currentUser.email }).populate(
       'favourites'
     )
 
     if (!user) {
-      console.log('User not found!')
+      console.error('User not found!')
     }
 
     return user

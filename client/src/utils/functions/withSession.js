@@ -10,8 +10,6 @@ const withSession = Component => props => (
         return null
       }
 
-      console.log(data)
-
       return <Component {...props} refetch={refetch} />
     }}
   </Query>

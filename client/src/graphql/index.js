@@ -12,6 +12,6 @@ export const client = new ApolloClient({
     })
   },
   onError: ({ networkError }) => {
-    networkError && console.log(networkError)
+    networkError && console.error(networkError)
   }
 })
