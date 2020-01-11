@@ -26,10 +26,9 @@ app.use((req, res, next) => {
   if (token !== 'null') {
     try {
       const currentUser = verify(token, jwtKey)
-      console.log(currentUser)
       req.currentUser = currentUser
     } catch (err) {
-      throw err
+      console.error(err)
     }
   }
 
