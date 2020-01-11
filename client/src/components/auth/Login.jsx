@@ -6,7 +6,7 @@ import { LOGIN_USER } from '../../graphql/mutations'
 import AuthForm from '../../utils/components/AuthForm'
 import FormField from '../../utils/components/FormField'
 
-const Login = () => {
+const Login = ({ refetch }) => {
   const formTitle = 'Login'
   const successMessage = 'Login successful!'
 
@@ -30,6 +30,7 @@ const Login = () => {
       mutation={LOGIN_USER}
       formTitle={formTitle}
       successMessage={successMessage}
+      refetch={refetch}
     >
       <div>
         <FormField name='email' type='email' label='Email' />

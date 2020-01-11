@@ -12,6 +12,7 @@ const AuthForm = ({
   location,
   formTitle,
   successMessage,
+  refetch,
   children
 }) => {
   const [formValues, setFormValues] = useState({})
@@ -49,6 +50,7 @@ const AuthForm = ({
 
                 const { data } = await mutationFunction()
                 localStorage.setItem('token', setDataHeader(data))
+                await refetch()
 
                 resetForm(initialValues)
                 setSuccess(true)

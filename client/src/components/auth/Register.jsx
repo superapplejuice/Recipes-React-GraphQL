@@ -6,7 +6,7 @@ import { REGISTER_USER } from '../../graphql/mutations'
 import AuthForm from '../../utils/components/AuthForm'
 import FormField from '../../utils/components/FormField'
 
-const Register = () => {
+const Register = ({ refetch }) => {
   const whitespaceRegex = /^\S+$/
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
   const formTitle = 'Register'
@@ -50,6 +50,7 @@ const Register = () => {
       mutation={REGISTER_USER}
       formTitle={formTitle}
       successMessage={successMessage}
+      refetch={refetch}
     >
       <div>
         <FormField name='username' type='text' label='Username' />
