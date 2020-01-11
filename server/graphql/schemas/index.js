@@ -46,8 +46,14 @@ exports.typeDefs = gql`
     password: String!
   }
 
+  input loginInput {
+    email: String!
+    password: String!
+  }
+
   type Mutation {
     createRecipe(recipeInput: recipeInput): Recipe
     userRegister(registerInput: registerInput): Token
+    userLogin(loginInput: loginInput): Token
   }
 `
