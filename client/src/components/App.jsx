@@ -10,6 +10,8 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import Search from './recipe/Search'
 
+import '../styles/App.css'
+
 const App = ({ refetch }) => {
   return (
     <Router history={history}>
