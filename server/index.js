@@ -27,6 +27,7 @@ app.use((req, res, next) => {
     try {
       const currentUser = verify(token, jwtKey)
       console.log(currentUser)
+      req.currentUser = currentUser
     } catch (err) {
       throw err
     }
@@ -38,7 +39,7 @@ app.use((req, res, next) => {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: { Recipe, User }
+  context: ({ req }) => ({ Recipe, User, currentUser: req.currentUser })
 })
 server.applyMiddleware({ app })
 
