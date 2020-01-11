@@ -6,9 +6,6 @@ export const FETCH_RECIPES = gql`
       _id
       name
       category
-      description
-      instructions
-      createdDate
       likes
     }
   }
