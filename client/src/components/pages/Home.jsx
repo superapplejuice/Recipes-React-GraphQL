@@ -1,7 +1,7 @@
 import React from 'react'
 import { Query } from 'react-apollo'
 
-import { FETCH_RECIPES } from '../graphql/queries'
+import { FETCH_RECIPES } from '../../graphql/queries'
 
 const Home = () => (
   <div>
