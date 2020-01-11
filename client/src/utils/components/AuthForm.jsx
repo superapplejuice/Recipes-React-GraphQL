@@ -3,6 +3,8 @@ import { Formik } from 'formik'
 import { Mutation } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 
+import history from '../functions/history'
+
 const AuthForm = ({
   initialValues,
   validationSchema,
@@ -46,12 +48,13 @@ const AuthForm = ({
                 setFormValues(values)
 
                 const { data } = await mutationFunction()
-                console.log(setDataHeader(data))
                 localStorage.setItem('token', setDataHeader(data))
 
                 resetForm(initialValues)
                 setSuccess(true)
                 setSubmitting(false)
+
+                history.push('/')
               } catch (err) {
                 setSuccess(false)
                 const errMessage = err.toString().slice(22)
