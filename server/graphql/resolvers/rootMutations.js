@@ -1,6 +1,6 @@
 const { hash, compare } = require('bcrypt')
 
-const { createToken } = require('../../utils')
+const createToken = require('../../utils/createToken')
 const { jwtKey } = require('../../keys')
 
 module.exports = {
