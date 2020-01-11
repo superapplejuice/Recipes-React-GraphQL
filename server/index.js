@@ -23,7 +23,7 @@ app.use(
 app.use((req, res, next) => {
   const token = req.headers['authorization']
 
-  if (token !== 'null') {
+  if (token !== 'null' && token !== '' && token !== undefined) {
     try {
       const currentUser = verify(token, jwtKey)
       req.currentUser = currentUser
