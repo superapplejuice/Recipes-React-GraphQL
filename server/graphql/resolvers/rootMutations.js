@@ -36,7 +36,7 @@ module.exports = {
     const hashPassword = await hash(password, 15)
 
     try {
-      const newUser = new User({
+      const newUser = await new User({
         username,
         email,
         password: hashPassword
