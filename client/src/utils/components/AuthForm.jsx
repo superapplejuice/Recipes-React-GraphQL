@@ -17,12 +17,18 @@ const AuthForm = ({
   const [success, setSuccess] = useState(false)
 
   const { username, email, password } = formValues
+  const { pathname } = location
 
   const setVariables = () => {
-    const { pathname } = location
     return pathname === '/auth/register'
       ? { username, email, password }
       : { email, password }
+  }
+
+  const setDataHeader = data => {
+    return pathname === '/auth/register'
+      ? data.userRegister.token
+      : data.userLogin.token
   }
 
   return (
@@ -39,7 +45,8 @@ const AuthForm = ({
                 setFormValues(values)
 
                 const { data } = await mutationFunction()
-                console.log(data)
+                console.log(setDataHeader(data))
+                localStorage.setItem('token', setDataHeader(data))
 
                 resetForm(initialValues)
                 setSuccess(true)
