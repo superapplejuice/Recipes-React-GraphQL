@@ -3,6 +3,7 @@ import { gql } from 'apollo-boost'
 export const FETCH_RECIPES = gql`
   query {
     recipesList {
+      _id
       name
       category
       description
