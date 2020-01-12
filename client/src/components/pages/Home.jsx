@@ -8,17 +8,13 @@ import RecipesList from '../recipe/RecipesList'
 const Home = () => {
   const { data, loading, error } = useQuery(FETCH_RECIPES)
 
-  const renderHome = () => {
-    if (loading) return <div>Loading...</div>
-    if (error) return <div>{error.message}</div>
-
-    return <RecipesList recipes={data.recipesList} />
-  }
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>{error.message}</div>
 
   return (
     <div>
       <div>Home</div>
-      {renderHome()}
+      <RecipesList recipes={data.recipesList} />
     </div>
   )
 }

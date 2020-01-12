@@ -9,22 +9,21 @@ const RecipePage = ({ match }) => {
     variables: { _id: id }
   })
 
-  console.log(data)
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>{error.message}</div>
 
-  const renderRecipePage = () => {
-    if (loading) return <div>Loading...</div>
-    if (error) return <div>{error.message}</div>
+  const {
+    name,
+    category,
+    description,
+    instructions,
+    createdDate,
+    likes
+  } = data.getRecipe
 
-    const {
-      name,
-      category,
-      description,
-      instructions,
-      createdDate,
-      likes
-    } = data.getRecipe
-
-    return (
+  return (
+    <div>
+      <div>Your recipe</div>
       <div>
         <div>{name}</div>
         <div>{category}</div>
@@ -33,13 +32,6 @@ const RecipePage = ({ match }) => {
         <div>{new Date(Number(createdDate)).toDateString()}</div>
         <div>{likes} likes</div>
       </div>
-    )
-  }
-
-  return (
-    <div>
-      <div>Your recipe</div>
-      {renderRecipePage()}
     </div>
   )
 }
