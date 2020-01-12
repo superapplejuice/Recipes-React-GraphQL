@@ -1,18 +1,14 @@
 import React from 'react'
-import { Query } from 'react-apollo'
+import { useQuery } from 'react-apollo'
 
 import { GET_CURRENT_USER } from '../../graphql/queries'
 
-const withSession = Component => props => (
-  <Query query={GET_CURRENT_USER}>
-    {({ data, loading, refetch }) => {
-      if (loading) {
-        return null
-      }
+const withSession = Component => props => {
+  const { data, loading, refetch } = useQuery(GET_CURRENT_USER)
 
-      return <Component {...props} refetch={refetch} session={data} />
-    }}
-  </Query>
-)
+  if (loading) return null
+
+  return <Component {...props} refetch={refetch} session={data} />
+}
 
 export default withSession
