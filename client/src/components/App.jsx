@@ -27,7 +27,10 @@ const App = ({ refetch, session }) => (
         render={() => <Register refetch={refetch} />}
       />
       <Route path='/recipe/search' component={Search} />
-      <Route path='/recipe/add' component={AddRecipe} />
+      <Route
+        path='/recipe/add'
+        render={() => <AddRecipe session={session} />}
+      />
       <Route path='/recipe/view/:id' component={RecipePage} />
     </Switch>
   </Router>
