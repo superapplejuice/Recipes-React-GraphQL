@@ -11,9 +11,8 @@ const RecipePage = ({ match }) => {
 
   console.log(data)
 
-  const renderRecipe = () => {
+  const renderRecipePage = () => {
     if (loading) return <div>Loading...</div>
-
     if (error) return <div>{error.message}</div>
 
     const {
@@ -40,7 +39,7 @@ const RecipePage = ({ match }) => {
   return (
     <div>
       <div>Your recipe</div>
-      {renderRecipe()}
+      {renderRecipePage()}
     </div>
   )
 }
