@@ -50,22 +50,14 @@ const Register = ({ refetch }) => {
       formTitle={formTitle}
       refetch={refetch}
     >
-      <div>
-        <FormField name='username' type='text' label='Username' />
-      </div>
-      <div>
-        <FormField name='email' type='email' label='Email' />
-      </div>
-      <div>
-        <FormField name='password' type='password' label='Password' />
-      </div>
-      <div>
-        <FormField
-          name='passwordConfirm'
-          type='password'
-          label='Confirm Password'
-        />
-      </div>
+      <FormField name='username' type='text' label='Username' />
+      <FormField name='email' type='email' label='Email' />
+      <FormField name='password' type='password' label='Password' />
+      <FormField
+        name='passwordConfirm'
+        type='password'
+        label='Confirm Password'
+      />
     </AuthForm>
   )
 }

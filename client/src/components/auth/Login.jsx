@@ -30,12 +30,8 @@ const Login = ({ refetch }) => {
       formTitle={formTitle}
       refetch={refetch}
     >
-      <div>
-        <FormField name='email' type='email' label='Email' />
-      </div>
-      <div>
-        <FormField name='password' type='password' label='Password' />
-      </div>
+      <FormField name='email' type='email' label='Email' />
+      <FormField name='password' type='password' label='Password' />
     </AuthForm>
   )
 }

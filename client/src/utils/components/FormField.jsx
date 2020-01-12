@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useField } from 'formik'
 
 const FormField = ({ label, ...props }) => {
   const [field, { touched, error }] = useField(props)
 
   return (
-    <Fragment>
+    <div>
       <label>{label}</label>
       <input {...field} {...props} />
       {touched && error && error}
-    </Fragment>
+    </div>
   )
 }
 
