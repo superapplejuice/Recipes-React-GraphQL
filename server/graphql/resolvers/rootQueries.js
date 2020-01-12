@@ -6,6 +6,15 @@ module.exports = {
       throw err
     }
   },
+  getRecipe: async (parent, { _id }, { Recipe }) => {
+    const recipe = await Recipe.findOne({ _id })
+
+    if (!recipe) {
+      throw new Error('Recipe not found!')
+    }
+
+    return recipe
+  },
   currentUser: async (parent, args, { currentUser, User }) => {
     if (!currentUser) {
       return null
@@ -14,10 +23,6 @@ module.exports = {
     const user = await User.findOne({ email: currentUser.email }).populate(
       'favourites'
     )
-
-    if (!user) {
-      console.error('User not found!')
-    }
 
     return user
   }

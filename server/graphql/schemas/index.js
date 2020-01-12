@@ -24,7 +24,7 @@ exports.typeDefs = gql`
 
   type Query {
     recipesList: [Recipe]!
-    usersList: [User]!
+    getRecipe(_id: ID!): Recipe
     currentUser: User
   }
 
