@@ -1,22 +1,26 @@
 import React from 'react'
-import { Query } from 'react-apollo'
+import { useQuery } from 'react-apollo'
 
 import { FETCH_RECIPES } from '../../graphql/queries'
 
 import RecipesList from '../recipe/RecipesList'
 
-const Home = () => (
-  <div>
-    <div>Home</div>
-    <Query query={FETCH_RECIPES}>
-      {({ data, loading, error }) => {
-        if (loading) return <div>Loading...</div>
-        if (error) return <div>Error!</div>
+const Home = () => {
+  const { data, loading, error } = useQuery(FETCH_RECIPES)
 
-        return <RecipesList recipes={data.recipesList} />
-      }}
-    </Query>
-  </div>
-)
+  const renderHome = () => {
+    if (loading) return <div>Loading...</div>
+    if (error) return <div>{error.message}</div>
+
+    return <RecipesList recipes={data.recipesList} />
+  }
+
+  return (
+    <div>
+      <div>Home</div>
+      {renderHome()}
+    </div>
+  )
+}
 
 export default Home
