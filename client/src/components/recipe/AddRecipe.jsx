@@ -4,8 +4,9 @@ import * as yup from 'yup'
 
 import FormField from '../../utils/components/FormField'
 
-const AddRecipe = () => {
+const AddRecipe = ({ session }) => {
   const [formErrors, setFormErrors] = useState(null)
+  const { username } = session.currentUser
   const categoryList = [
     null,
     'Breakfast',
@@ -23,7 +24,7 @@ const AddRecipe = () => {
     category: '',
     description: '',
     instructions: '',
-    username: ''
+    username
   }
 
   const validationSchema = yup.object().shape({
