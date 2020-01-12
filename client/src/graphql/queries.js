@@ -21,6 +21,7 @@ export const FETCH_RECIPE = gql`
       instructions
       createdDate
       likes
+      username
     }
   }
 `
