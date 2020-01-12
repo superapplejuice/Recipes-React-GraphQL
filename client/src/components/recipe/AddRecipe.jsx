@@ -6,7 +6,6 @@ import FormField from '../../utils/components/FormField'
 import DropdownField from '../../utils/components/DropdownField'
 
 const AddRecipe = () => {
-  const [formValues, setFormValues] = useState({})
   const [errors, setErrors] = useState(null)
   const categoryList = [
     null,
@@ -54,9 +53,17 @@ const AddRecipe = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setFormValues(values)
-          console.log(formValues)
-          setSubmitting(false)
+          try {
+            setErrors(null)
+
+            console.log(values)
+            setSubmitting(false)
+          } catch (err) {
+            const errMessage = err.toString().slice(22)
+
+            setErrors(errMessage)
+            setSubmitting(false)
+          }
         }}
       >
         {({
@@ -72,7 +79,7 @@ const AddRecipe = () => {
           <form onSubmit={handleSubmit}>
             <FormField name='name' type='text' label='Name' />
             <FormField name='description' type='text' label='Description' />
-            <FormField name='Instructions' type='text' label='Instructions' />
+            <FormField name='instructions' type='text' label='Instructions' />
             <DropdownField
               label='Category'
               name='category'
