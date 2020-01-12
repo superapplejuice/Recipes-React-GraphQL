@@ -3,10 +3,9 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 
 import FormField from '../../utils/components/FormField'
-import DropdownField from '../../utils/components/DropdownField'
 
 const AddRecipe = () => {
-  const [errors, setErrors] = useState(null)
+  const [formErrors, setFormErrors] = useState(null)
   const categoryList = [
     null,
     'Breakfast',
@@ -54,14 +53,14 @@ const AddRecipe = () => {
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
           try {
-            setErrors(null)
+            setFormErrors(null)
 
             console.log(values)
             setSubmitting(false)
           } catch (err) {
             const errMessage = err.toString().slice(22)
 
-            setErrors(errMessage)
+            setFormErrors(errMessage)
             setSubmitting(false)
           }
         }}
@@ -80,16 +79,24 @@ const AddRecipe = () => {
             <FormField name='name' type='text' label='Name' />
             <FormField name='description' type='text' label='Description' />
             <FormField name='instructions' type='text' label='Instructions' />
-            <DropdownField
-              label='Category'
-              name='category'
-              value={values.category}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              itemList={categoryList}
-              errors={errors.category}
-              touched={touched.category}
-            />
+            <div>
+              <label>Category</label>
+              <select
+                name='category'
+                value={values.category}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              >
+                {categoryList.map((category, index) => (
+                  <option
+                    key={index}
+                    value={category}
+                    label={category === null ? 'Choose one' : category}
+                  />
+                ))}
+              </select>
+              {errors.category && touched.category && errors.category}
+            </div>
             <div>
               <button type='submit' disabled={isSubmitting}>
                 Submit
@@ -98,6 +105,7 @@ const AddRecipe = () => {
                 Clear form
               </button>
             </div>
+            <div>{formErrors && <p>{formErrors}</p>}</div>
           </form>
         )}
       </Formik>
