@@ -13,5 +13,6 @@ export const client = new ApolloClient({
   },
   onError: ({ networkError }) => {
     networkError && console.error(networkError)
+    networkError.statusCode === 401 && localStorage.removeItem('token')
   }
 })
