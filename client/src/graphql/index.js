@@ -12,7 +12,9 @@ export const client = new ApolloClient({
     })
   },
   onError: ({ networkError }) => {
-    networkError && console.error(networkError)
-    networkError.statusCode === 401 && localStorage.removeItem('token')
+    const { message } = networkError
+
+    networkError && console.error(`Network error: ${message}`)
+    message === 'Failed to fetch' && localStorage.removeItem('token')
   }
 })
