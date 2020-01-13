@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { array } from 'prop-types'
 
 const RecipeList = ({ recipes }) => (
   <ul>
@@ -14,5 +15,9 @@ const RecipeList = ({ recipes }) => (
     ))}
   </ul>
 )
+
+RecipeList.propTypes = {
+  recipes: array.isRequired
+}
 
 export default RecipeList

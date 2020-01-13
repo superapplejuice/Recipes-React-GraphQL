@@ -1,5 +1,6 @@
 import React from 'react'
 import * as yup from 'yup'
+import { func } from 'prop-types'
 
 import { LOGIN_USER } from '../../graphql/mutations'
 
@@ -34,6 +35,10 @@ const Login = ({ refetch }) => {
       <FormField name='password' type='password' label='Password' />
     </AuthForm>
   )
+}
+
+Login.propTypes = {
+  refetch: func.isRequired
 }
 
 export default Login

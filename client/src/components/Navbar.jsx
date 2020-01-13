@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
+import { object } from 'prop-types'
 
 import Logout from './auth/Logout'
 
@@ -28,6 +29,10 @@ const Navbar = ({ session }) => {
       {handleAuth()}
     </nav>
   )
+}
+
+Navbar.propTypes = {
+  session: object.isRequired
 }
 
 export default Navbar

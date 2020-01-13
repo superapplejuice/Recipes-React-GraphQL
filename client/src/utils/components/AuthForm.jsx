@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Formik } from 'formik'
 import { useMutation } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
+import { object, string, func, node } from 'prop-types'
 
 const AuthForm = ({
   initialValues,
@@ -65,6 +66,17 @@ const AuthForm = ({
       </Formik>
     </div>
   )
+}
+
+AuthForm.propTypes = {
+  initialValues: object.isRequired,
+  validationSchema: object.isRequired,
+  mutation: object.isRequired,
+  location: object.isRequired,
+  history: object.isRequired,
+  formTitle: string.isRequired,
+  refetch: func.isRequired,
+  children: node.isRequired
 }
 
 export default withRouter(AuthForm)

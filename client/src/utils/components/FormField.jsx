@@ -1,5 +1,6 @@
 import React from 'react'
 import { useField } from 'formik'
+import { string, object } from 'prop-types'
 
 const FormField = ({ label, ...props }) => {
   const [field, { touched, error }] = useField(props)
@@ -11,6 +12,11 @@ const FormField = ({ label, ...props }) => {
       {touched && error && error}
     </div>
   )
+}
+
+FormField.propTypes = {
+  label: string.isRequired,
+  props: object
 }
 
 export default FormField

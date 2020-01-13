@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Formik } from 'formik'
 import * as yup from 'yup'
+import { object } from 'prop-types'
 
 import FormField from '../../utils/components/FormField'
 
@@ -112,6 +113,10 @@ const AddRecipe = ({ session }) => {
       </Formik>
     </div>
   )
+}
+
+AddRecipe.propTypes = {
+  session: object.isRequired
 }
 
 export default AddRecipe

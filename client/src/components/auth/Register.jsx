@@ -1,5 +1,6 @@
 import React from 'react'
 import * as yup from 'yup'
+import { func } from 'prop-types'
 
 import { REGISTER_USER } from '../../graphql/mutations'
 
@@ -60,6 +61,10 @@ const Register = ({ refetch }) => {
       />
     </AuthForm>
   )
+}
+
+Register.propTypes = {
+  refetch: func.isRequired
 }
 
 export default Register

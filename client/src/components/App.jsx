@@ -1,5 +1,6 @@
 import React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
+import { func, object } from 'prop-types'
 
 import history from '../utils/functions/history'
 import withSession from '../utils/functions/withSession'
@@ -35,5 +36,10 @@ const App = ({ refetch, session }) => (
     </Switch>
   </Router>
 )
+
+App.propTypes = {
+  refetch: func.isRequired,
+  session: object.isRequired
+}
 
 export default withSession(App)
