@@ -1,7 +1,7 @@
 module.exports = {
   recipesList: async (parent, args, { Recipe }) => {
     try {
-      return await Recipe.find()
+      return await Recipe.find().sort({ createdDate: 'desc' })
     } catch (err) {
       throw err
     }
