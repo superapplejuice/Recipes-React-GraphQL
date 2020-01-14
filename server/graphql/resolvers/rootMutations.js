@@ -4,8 +4,16 @@ const createToken = require('../../utils/createToken')
 const { jwtKey } = require('../../keys')
 
 module.exports = {
-  createRecipe: async (parent, { recipeInput }, { Recipe }) => {
+  createRecipe: async (parent, { recipeInput }, { Recipe, User }) => {
     const { name, category, description, instructions, username } = recipeInput
+    if (!username) {
+      throw new Error('You must be logged in to do that!')
+    }
+
+    const existingUser = await User.findOne({ username })
+    if (!existingUser) {
+      throw new Error(`User ${username} does not exist!`)
+    }
 
     const newRecipe = new Recipe({
       name,
