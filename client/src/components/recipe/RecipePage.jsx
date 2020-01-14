@@ -5,7 +5,6 @@ import { object } from 'prop-types'
 import { FETCH_RECIPE } from '../../graphql/queries'
 
 const RecipePage = ({ match }) => {
-  console.log(typeof match)
   const { id } = match.params
   const { data, loading, error } = useQuery(FETCH_RECIPE, {
     variables: { _id: id }
