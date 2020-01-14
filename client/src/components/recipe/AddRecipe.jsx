@@ -6,13 +6,22 @@ import { withRouter } from 'react-router-dom'
 import { object } from 'prop-types'
 
 import { CREATE_RECIPE } from '../../graphql/mutations'
+import { FETCH_RECIPES } from '../../graphql/queries'
 
 import FormField from '../../utils/components/FormField'
 
 const AddRecipe = ({ session, history }) => {
   const [formErrors, setFormErrors] = useState(null)
+  const [createRecipe, { loading }] = useMutation(CREATE_RECIPE, {
+    update: (cache, { data: { createRecipe } }) => {
+      const { recipesList } = cache.readQuery({ query: FETCH_RECIPES })
 
-  const [createRecipe, { loading }] = useMutation(CREATE_RECIPE)
+      return cache.writeQuery({
+        query: FETCH_RECIPES,
+        data: { recipesList: [createRecipe, ...recipesList] }
+      })
+    }
+  })
   const { username } = session.currentUser
 
   const categoryList = [
