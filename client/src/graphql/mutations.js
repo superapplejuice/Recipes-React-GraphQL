@@ -17,3 +17,32 @@ export const LOGIN_USER = gql`
     }
   }
 `
+
+export const CREATE_RECIPE = gql`
+  mutation(
+    $name: String!
+    $category: String!
+    $description: String!
+    $instructions: String!
+    $username: String!
+  ) {
+    createRecipe(
+      recipeInput: {
+        name: $name
+        category: $category
+        description: $description
+        instructions: $instructions
+        username: $username
+      }
+    ) {
+      _id
+      name
+      category
+      description
+      instructions
+      createdDate
+      likes
+      username
+    }
+  }
+`
