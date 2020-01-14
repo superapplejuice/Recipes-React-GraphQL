@@ -30,7 +30,7 @@ const AuthForm = ({
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={async values => {
+        onSubmit={async (values, { setSubmitting }) => {
           try {
             setErrors(null)
 
@@ -43,6 +43,7 @@ const AuthForm = ({
             const errMessage = err.toString().slice(22)
 
             setErrors(errMessage)
+            setSubmitting(false)
           }
         }}
       >
