@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
 import { Formik } from 'formik'
 import * as yup from 'yup'
+import { useMutation } from 'react-apollo'
+import { withRouter } from 'react-router-dom'
 import { object } from 'prop-types'
+
+import { CREATE_RECIPE } from '../../graphql/mutations'
 
 import FormField from '../../utils/components/FormField'
 
-const AddRecipe = ({ session }) => {
+const AddRecipe = ({ session, history }) => {
   const [formErrors, setFormErrors] = useState(null)
+
+  const [createRecipe, { loading }] = useMutation(CREATE_RECIPE)
   const { username } = session.currentUser
+
   const categoryList = [
     null,
     'Breakfast',
@@ -53,12 +60,13 @@ const AddRecipe = ({ session }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={async (values, { setSubmitting }) => {
           try {
             setFormErrors(null)
 
-            console.log(values)
-            setSubmitting(false)
+            await createRecipe({ variables: values })
+
+            history.push('/')
           } catch (err) {
             const errMessage = err.toString().slice(22)
 
@@ -107,7 +115,10 @@ const AddRecipe = ({ session }) => {
                 Clear form
               </button>
             </div>
-            <div>{formErrors && <p>{formErrors}</p>}</div>
+            <div>
+              {loading && <p>Submitting...</p>}
+              {formErrors && <p>{formErrors}</p>}
+            </div>
           </form>
         )}
       </Formik>
@@ -116,7 +127,8 @@ const AddRecipe = ({ session }) => {
 }
 
 AddRecipe.propTypes = {
-  session: object.isRequired
+  session: object.isRequired,
+  history: object.isRequired
 }
 
-export default AddRecipe
+export default withRouter(AddRecipe)
