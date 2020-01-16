@@ -15,6 +15,16 @@ module.exports = {
 
     return recipe
   },
+  searchRecipe: async (parent, { searchTerm }, { Recipe }) => {
+    if (searchTerm) {
+      return await Recipe.find({ name: searchTerm }).sort({
+        likes: 'desc',
+        createdDate: 'desc'
+      })
+    }
+
+    return await Recipe.find().sort({ likes: 'desc', createdDate: 'desc' })
+  },
   currentUser: async (parent, args, { currentUser, User }) => {
     if (!currentUser) {
       return null

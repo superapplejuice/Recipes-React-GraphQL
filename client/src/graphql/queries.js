@@ -26,6 +26,21 @@ export const FETCH_RECIPE = gql`
   }
 `
 
+export const SEARCH_RECIPES = gql`
+  query($searchTerm: String) {
+    searchRecipe(searchTerm: $searchTerm) {
+      _id
+      name
+      category
+      description
+      instructions
+      createdDate
+      likes
+      username
+    }
+  }
+`
+
 export const GET_CURRENT_USER = gql`
   query {
     currentUser {
