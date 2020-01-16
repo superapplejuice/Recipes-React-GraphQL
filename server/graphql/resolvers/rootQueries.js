@@ -17,9 +17,11 @@ module.exports = {
   },
   searchRecipe: async (parent, { searchTerm }, { Recipe }) => {
     if (searchTerm) {
-      return await Recipe.find({ name: searchTerm }).sort({
-        likes: 'desc',
-        createdDate: 'desc'
+      return await Recipe.find(
+        { $text: { $search: searchTerm } },
+        { score: { $meta: 'textScore' } }
+      ).sort({
+        score: { $meta: 'textScore' }
       })
     }
 
