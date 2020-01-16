@@ -3,7 +3,7 @@ import { useQuery } from 'react-apollo'
 
 import { SEARCH_RECIPES } from '../../graphql/queries'
 
-import RecipeList from './RecipesList'
+import RecipesList from '../../utils/components/RecipesList'
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -23,7 +23,7 @@ const Search = () => {
     ) : error && !loading ? (
       <p>Error while searching for recipes!</p>
     ) : (
-      <RecipeList recipes={data.searchRecipe} />
+      <RecipesList recipes={data.searchRecipe} />
     )
   }
 
