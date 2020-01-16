@@ -18,7 +18,7 @@ exports.typeDefs = gql`
     username: String!
     password: String!
     email: String!
-    joinDate: String
+    joinedDate: String
     favourites: [Recipe]
   }
 
