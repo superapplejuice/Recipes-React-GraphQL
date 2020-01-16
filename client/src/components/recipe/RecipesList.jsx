@@ -9,7 +9,7 @@ const RecipeList = ({ recipes }) => (
         <Link to={`/recipe/view/${_id}`}>
           <div>{name}</div>
           <div>{category}</div>
-          <div>{likes}</div>
+          <div>{likes} likes</div>
         </Link>
       </li>
     ))}
