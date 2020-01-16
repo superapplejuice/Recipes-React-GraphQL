@@ -9,7 +9,9 @@ const Navbar = ({ session }) => {
     return session && session.currentUser ? (
       <Fragment>
         <NavLink to='/recipe/add'>Add Recipe</NavLink>
-        <NavLink to='/profile'>Hello, {session.currentUser.username}!</NavLink>
+        <NavLink to='/user/profile'>
+          Hello, {session.currentUser.username}!
+        </NavLink>
         <Logout />
       </Fragment>
     ) : (

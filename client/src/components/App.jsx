@@ -8,11 +8,11 @@ import withSession from '../utils/functions/withSession'
 import Navbar from './Navbar'
 import Home from './pages/Home'
 import Search from './pages/Search'
-import Profile from './pages/Profile'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import AddRecipe from './recipe/AddRecipe'
 import RecipePage from './recipe/RecipePage'
+import Profile from './user/Profile'
 
 import '../styles/App.css'
 
@@ -21,7 +21,6 @@ const App = ({ refetch, session }) => (
     <Navbar session={session} />
     <Switch>
       <Route exact path='/' component={Home} />
-      <Route path='/profile' component={Profile} />
       <Route path='/search' component={Search} />
       <Route path='/auth/login' render={() => <Login refetch={refetch} />} />
       <Route
@@ -33,6 +32,10 @@ const App = ({ refetch, session }) => (
         render={() => <AddRecipe session={session} />}
       />
       <Route path='/recipe/view/:id' component={RecipePage} />
+      <Route
+        path='/user/profile'
+        render={() => <Profile session={session} />}
+      />
     </Switch>
   </Router>
 )
