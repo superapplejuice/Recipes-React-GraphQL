@@ -32,4 +32,6 @@ const recipeSchema = new Schema({
   }
 })
 
+recipeSchema.index({ '$**': 'text' })
+
 module.exports = model('Recipe', recipeSchema)
