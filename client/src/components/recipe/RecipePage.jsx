@@ -32,7 +32,7 @@ const RecipePage = ({ match }) => {
         <div>{category}</div>
         <div>{description}</div>
         <div>{instructions}</div>
-        <div>{new Date(Number(createdDate)).toDateString()}</div>
+        <div>{new Date(Number(createdDate)).toLocaleString()}</div>
         <div>{likes} likes</div>
       </div>
     </div>
