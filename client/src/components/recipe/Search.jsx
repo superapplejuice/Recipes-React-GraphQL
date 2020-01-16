@@ -1,7 +1,8 @@
-import React, { useState, useEffect, createRef, Fragment } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 import { useQuery } from 'react-apollo'
 
 import { SEARCH_RECIPES } from '../../graphql/queries'
+
 import RecipeList from './RecipesList'
 
 const Search = () => {
@@ -10,7 +11,6 @@ const Search = () => {
     variables: { searchTerm }
   })
   const inputRef = createRef()
-  console.log()
 
   useEffect(() => {
     inputRef.current.focus()
@@ -22,13 +22,8 @@ const Search = () => {
       <p>Loading...</p>
     ) : error && !loading ? (
       <p>Error while searching for recipes!</p>
-    ) : data.searchRecipe.length > 0 ? (
-      <Fragment>
-        <p>List of Recipes</p>
-        <RecipeList recipes={data.searchRecipe} />
-      </Fragment>
     ) : (
-      <p>No recipes found!</p>
+      <RecipeList recipes={data.searchRecipe} />
     )
   }
 
