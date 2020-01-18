@@ -27,7 +27,7 @@ const Navbar = ({ session }) => {
       <NavLink exact to='/'>
         Home
       </NavLink>
-      <NavLink to='/recipe/search'>Search</NavLink>
+      <NavLink to='/search'>Search</NavLink>
       {handleAuth()}
     </nav>
   )

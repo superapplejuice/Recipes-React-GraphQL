@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Switch, Route } from 'react-router-dom'
+import { Router, Switch, Route, Redirect } from 'react-router-dom'
 import { func, object } from 'prop-types'
 
 import history from '../utils/functions/history'
@@ -19,6 +19,7 @@ import '../styles/App.css'
 const App = ({ refetch, session }) => (
   <Router history={history}>
     <Navbar session={session} />
+    <Redirect to='/' />
     <Switch>
       <Route exact path='/' component={Home} />
       <Route path='/search' component={Search} />
