@@ -29,6 +29,17 @@ module.exports = {
       throw err
     }
   },
+  deleteRecipe: async (parent, { _id }, { Recipe }) => {
+    if (!_id) {
+      throw new Error('Recipe not found!')
+    }
+
+    try {
+      return await Recipe.findOneAndDelete({ _id })
+    } catch (err) {
+      throw err
+    }
+  },
   userRegister: async (parent, { registerInput }, { User }) => {
     const { username, email, password } = registerInput
 
