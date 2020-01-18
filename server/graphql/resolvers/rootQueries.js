@@ -37,5 +37,19 @@ module.exports = {
     )
 
     return user
+  },
+  userRecipes: async (parent, { username }, { Recipe }) => {
+    if (!username) {
+      throw new Error('User not found!')
+    }
+
+    try {
+      return await Recipe.find({ username }).sort({
+        likes: 'desc',
+        createdDate: 'desc'
+      })
+    } catch (err) {
+      throw err
+    }
   }
 }

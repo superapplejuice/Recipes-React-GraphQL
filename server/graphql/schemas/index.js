@@ -27,6 +27,7 @@ exports.typeDefs = gql`
     getRecipe(_id: ID!): Recipe
     searchRecipe(searchTerm: String): [Recipe]
     currentUser: User
+    userRecipes(username: String!): [Recipe]!
   }
 
   # mutations
