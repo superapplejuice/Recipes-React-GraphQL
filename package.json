@@ -8,7 +8,7 @@
   "scripts": {
     "server": "nodemon server",
     "client": "yarn --cwd client start",
-    "dev": "concurrently \"yarn server\" \"yarn client\""
+    "start": "concurrently \"yarn server\" \"yarn client\""
   },
   "dependencies": {
     "apollo-boost": "^0.4.7",
