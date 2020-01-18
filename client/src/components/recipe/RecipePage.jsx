@@ -25,16 +25,13 @@ const RecipePage = ({ match }) => {
 
   return (
     <div>
-      <div>Your recipe</div>
-      <div>
-        <div>{name}</div>
-        <div>Created by {username}</div>
-        <div>{category}</div>
-        <div>{description}</div>
-        <div>{instructions}</div>
-        <div>{new Date(Number(createdDate)).toLocaleString()}</div>
-        <div>{likes} likes</div>
-      </div>
+      <div>{name}</div>
+      <div>Created by {username}</div>
+      <div>{category}</div>
+      <div>{description}</div>
+      <div>{instructions}</div>
+      <div>{new Date(Number(createdDate)).toLocaleString()}</div>
+      <div>{likes} likes</div>
     </div>
   )
 }
