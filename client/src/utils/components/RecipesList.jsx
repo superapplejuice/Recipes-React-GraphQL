@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { array } from 'prop-types'
 
-const RecipeList = ({ recipes }) => (
+const RecipesList = ({ recipes }) => (
   <ul>
     {recipes.map(({ _id, name, category, likes }) => (
       <li key={_id}>
@@ -16,8 +16,8 @@ const RecipeList = ({ recipes }) => (
   </ul>
 )
 
-RecipeList.propTypes = {
+RecipesList.propTypes = {
   recipes: array.isRequired
 }
 
-export default RecipeList
+export default RecipesList
