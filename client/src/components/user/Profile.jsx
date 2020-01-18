@@ -1,6 +1,8 @@
 import React from 'react'
 import { object } from 'prop-types'
 
+import withAuth from '../../utils/functions/withAuth'
+
 import UserInfo from './UserInfo'
 import UserRecipes from './UserRecipes'
 
@@ -18,4 +20,6 @@ Profile.propTypes = {
   session: object.isRequired
 }
 
-export default Profile
+const authCondition = session => session && session.currentUser
+
+export default withAuth(authCondition)(Profile)

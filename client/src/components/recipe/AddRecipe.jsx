@@ -7,6 +7,7 @@ import { object } from 'prop-types'
 
 import { CREATE_RECIPE } from '../../graphql/mutations'
 import { FETCH_RECIPES } from '../../graphql/queries'
+import withAuth from '../../utils/functions/withAuth'
 
 import FormField from '../../utils/components/FormField'
 
@@ -140,4 +141,6 @@ AddRecipe.propTypes = {
   history: object.isRequired
 }
 
-export default withRouter(AddRecipe)
+const authCondition = session => session && session.currentUser
+
+export default withAuth(authCondition)(withRouter(AddRecipe))
