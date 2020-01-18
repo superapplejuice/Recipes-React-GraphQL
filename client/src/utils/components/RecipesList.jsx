@@ -1,12 +1,15 @@
 import React from 'react'
-import { useQuery } from 'react-apollo'
+import { useQuery, useMutation } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import { array } from 'prop-types'
 
 import { GET_CURRENT_USER } from '../../graphql/queries'
+import { DELETE_RECIPE } from '../../graphql/mutations'
 
 const RecipesList = ({ recipes }) => {
   const { data } = useQuery(GET_CURRENT_USER)
+  const [deleteRecipe] = useMutation(DELETE_RECIPE)
+  console.log(recipes)
 
   return (
     <ul>
@@ -18,7 +21,13 @@ const RecipesList = ({ recipes }) => {
             <div>{likes} likes</div>
           </Link>
           {data.currentUser !== null &&
-            username === data.currentUser.username && <button>Delete</button>}
+            username === data.currentUser.username && (
+              <button
+                onClick={async () => await deleteRecipe({ variables: { _id } })}
+              >
+                Delete
+              </button>
+            )}
         </li>
       ))}
     </ul>
