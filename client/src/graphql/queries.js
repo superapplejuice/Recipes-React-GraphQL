@@ -7,6 +7,7 @@ export const FETCH_RECIPES = gql`
       name
       category
       likes
+      username
     }
   }
 `
@@ -62,6 +63,7 @@ export const GET_USER_RECIPES = gql`
       name
       category
       likes
+      username
     }
   }
 `
