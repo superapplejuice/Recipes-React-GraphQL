@@ -9,7 +9,17 @@ import { DELETE_RECIPE } from '../../graphql/mutations'
 const RecipesList = ({ recipes }) => {
   const { data } = useQuery(GET_CURRENT_USER)
   const [deleteRecipe] = useMutation(DELETE_RECIPE)
-  console.log(recipes)
+
+  const handleDelete = (deleteRecipe, _id) => {
+    const confirmDelete = window.confirm(
+      'Are you sure you want to delete this recipe?'
+    )
+
+    return (
+      confirmDelete &&
+      deleteRecipe({ variables: { _id } }).then(({ data }) => console.log(data))
+    )
+  }
 
   return (
     <ul>
@@ -22,9 +32,7 @@ const RecipesList = ({ recipes }) => {
           </Link>
           {data.currentUser !== null &&
             username === data.currentUser.username && (
-              <button
-                onClick={async () => await deleteRecipe({ variables: { _id } })}
-              >
+              <button onClick={() => handleDelete(deleteRecipe, _id)}>
                 Delete
               </button>
             )}
