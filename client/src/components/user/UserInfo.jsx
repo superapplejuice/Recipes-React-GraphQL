@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { object } from 'prop-types'
 
-const UserInfo = ({ session: { currentUser } }) => {
-  const { username, email, joinedDate, favourites } = currentUser
+const UserInfo = ({ session }) => {
+  const { username, email, joinedDate, favourites } = session.currentUser
 
   const renderFavourites = () => {
     return favourites.length > 0 ? (
@@ -36,7 +36,7 @@ const UserInfo = ({ session: { currentUser } }) => {
 }
 
 UserInfo.propTypes = {
-  currentUser: object.isRequired
+  session: object.isRequired
 }
 
 export default UserInfo
