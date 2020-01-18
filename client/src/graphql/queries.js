@@ -54,3 +54,14 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `
+
+export const GET_USER_RECIPES = gql`
+  query($username: String!) {
+    userRecipes(username: $username) {
+      _id
+      name
+      category
+      likes
+    }
+  }
+`
