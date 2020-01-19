@@ -6,7 +6,6 @@ import { array } from 'prop-types'
 import {
   FETCH_RECIPES,
   GET_CURRENT_USER,
-  SEARCH_RECIPES,
   GET_USER_RECIPES
 } from '../../graphql/queries'
 import { DELETE_RECIPE } from '../../graphql/mutations'
@@ -30,7 +29,6 @@ const RecipesList = ({ recipes }) => {
     refetchQueries: () => [
       { query: FETCH_RECIPES },
       { query: GET_CURRENT_USER },
-      { query: SEARCH_RECIPES },
       {
         query: GET_USER_RECIPES,
         variables: { username: data.currentUser.username }

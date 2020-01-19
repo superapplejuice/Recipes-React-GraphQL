@@ -9,7 +9,6 @@ import { CREATE_RECIPE } from '../../graphql/mutations'
 import {
   FETCH_RECIPES,
   GET_CURRENT_USER,
-  SEARCH_RECIPES,
   GET_USER_RECIPES
 } from '../../graphql/queries'
 import withAuth from '../../utils/functions/withAuth'
@@ -32,7 +31,6 @@ const AddRecipe = ({ session, history }) => {
     refetchQueries: () => [
       { query: FETCH_RECIPES },
       { query: GET_CURRENT_USER },
-      { query: SEARCH_RECIPES },
       {
         query: GET_USER_RECIPES,
         variables: { username }
