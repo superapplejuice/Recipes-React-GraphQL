@@ -16,8 +16,10 @@ const UserRecipes = ({ session }) => {
       <p>Loading...</p>
     ) : !loading && error ? (
       <p>{error}</p>
-    ) : (
+    ) : data.userRecipes.length > 0 ? (
       <RecipesList recipes={data.userRecipes} />
+    ) : (
+      <p>You haven't added any recipes!</p>
     )
   }
 
