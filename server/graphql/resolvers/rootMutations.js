@@ -33,7 +33,10 @@ module.exports = {
     const { _id, username } = likeInput
 
     try {
-      await User.findOneAndUpdate({ username }, { $add: { favourites: _id } })
+      await User.findOneAndUpdate(
+        { username },
+        { $addToSet: { favourites: _id } }
+      )
       return await Recipe.findOneAndUpdate({ _id }, { $inc: { likes: 1 } })
     } catch (err) {
       throw err
