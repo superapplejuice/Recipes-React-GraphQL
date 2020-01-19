@@ -47,6 +47,16 @@ export const CREATE_RECIPE = gql`
   }
 `
 
+export const LIKE_RECIPE = gql`
+  mutation($_id: ID!, $username: String) {
+    likeRecipe(likeInput: { _id: $_id, username: $username }) {
+      _id
+      name
+      likes
+    }
+  }
+`
+
 export const DELETE_RECIPE = gql`
   mutation($_id: ID!) {
     deleteRecipe(_id: $_id) {

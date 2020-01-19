@@ -29,6 +29,16 @@ module.exports = {
       throw err
     }
   },
+  likeRecipe: async (parent, { likeInput }, { Recipe, User }) => {
+    const { _id, username } = likeInput
+
+    try {
+      await User.findOneAndUpdate({ username }, { $add: { favourites: _id } })
+      return await Recipe.findOneAndUpdate({ _id }, { $inc: { likes: 1 } })
+    } catch (err) {
+      throw err
+    }
+  },
   deleteRecipe: async (parent, { _id }, { Recipe }) => {
     if (!_id) {
       throw new Error('Recipe not found!')
