@@ -4,6 +4,8 @@ import { object } from 'prop-types'
 
 import { FETCH_RECIPE } from '../../graphql/queries'
 
+import LikeRecipe from './LikeRecipe'
+
 const RecipePage = ({ match }) => {
   const { id } = match.params
   const { data, loading, error } = useQuery(FETCH_RECIPE, {
@@ -14,6 +16,7 @@ const RecipePage = ({ match }) => {
   if (error) return <div>{error.message}</div>
 
   const {
+    _id,
     name,
     category,
     description,
@@ -36,6 +39,7 @@ const RecipePage = ({ match }) => {
         <p>{instructions}</p>
       </div>
       <div>{new Date(Number(createdDate)).toLocaleString()}</div>
+      <LikeRecipe _id={_id} />
     </div>
   )
 }
