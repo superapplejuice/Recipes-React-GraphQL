@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Mutation } from 'react-apollo'
+import { string, func, object } from 'prop-types'
 
 import { LIKE_RECIPE, UNLIKE_RECIPE } from '../../graphql/mutations'
 import { FETCH_RECIPE } from '../../graphql/queries'
@@ -46,6 +47,7 @@ class LikeRecipe extends PureComponent {
   render() {
     const { _id } = this.props
     const { username, liked } = this.state
+    console.log(this.props)
 
     return (
       <Mutation
@@ -97,6 +99,12 @@ class LikeRecipe extends PureComponent {
       </Mutation>
     )
   }
+}
+
+LikeRecipe.propTypes = {
+  _id: string.isRequired,
+  refetch: func.isRequired,
+  session: object.isRequired
 }
 
 export default withSession(LikeRecipe)
