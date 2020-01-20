@@ -19,13 +19,15 @@ class LikeRecipe extends PureComponent {
     } = this.props
     // returns an element that matches the condition
     // returns -1 (false) || 0 (pass)
-    const prevLiked =
-      currentUser.favourites.findIndex(item => item._id === _id) > -1
+    if (currentUser) {
+      const prevLiked =
+        currentUser.favourites.findIndex(item => item._id === _id) > -1
 
-    return (
-      currentUser &&
-      this.setState({ username: currentUser.username, liked: prevLiked })
-    )
+      return (
+        currentUser &&
+        this.setState({ username: currentUser.username, liked: prevLiked })
+      )
+    }
   }
 
   handleLike = (likeRecipe, unlikeRecipe) => {
