@@ -47,7 +47,6 @@ class LikeRecipe extends PureComponent {
   render() {
     const { _id } = this.props
     const { username, liked } = this.state
-    console.log(this.props)
 
     return (
       <Mutation
