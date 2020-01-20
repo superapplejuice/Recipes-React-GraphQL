@@ -23,7 +23,8 @@ const RecipePage = ({ match }) => {
     instructions,
     createdDate,
     likes,
-    username
+    username,
+    imageUrl
   } = data.getRecipe
 
   return (
@@ -39,6 +40,7 @@ const RecipePage = ({ match }) => {
         <p>{instructions}</p>
       </div>
       <div>{new Date(Number(createdDate)).toLocaleString()}</div>
+      <img src={imageUrl} alt='recipe_image' />
       <LikeRecipe _id={_id} />
     </div>
   )

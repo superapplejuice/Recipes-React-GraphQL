@@ -46,12 +46,13 @@ const RecipesList = ({ recipes }) => {
 
   return (
     <ul>
-      {recipes.map(({ _id, name, category, likes, username }) => (
+      {recipes.map(({ _id, name, category, likes, username, imageUrl }) => (
         <li key={_id}>
           <Link to={`/recipe/view/${_id}`}>
             <div>{name}</div>
             <div>{category}</div>
             <div>{likes} likes</div>
+            <img src={imageUrl} alt='recipe_image' />
           </Link>
           {data.currentUser !== null &&
             username === data.currentUser.username && (
