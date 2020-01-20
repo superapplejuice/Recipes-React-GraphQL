@@ -55,7 +55,8 @@ const AddRecipe = ({ session, history }) => {
     category: '',
     description: '',
     instructions: '',
-    username
+    username,
+    imageUrl: ''
   }
 
   const validationSchema = yup.object().shape({
@@ -74,7 +75,11 @@ const AddRecipe = ({ session, history }) => {
       .string()
       .min(4, 'Please enter at least 4 characters')
       .max(256, 'Maximum 256 characters')
-      .required('Please enter some instructions')
+      .required('Please enter some instructions'),
+    imageUrl: yup
+      .string()
+      .url('Please enter a valid url')
+      .required('Please enter a valid URL for your image')
   })
 
   return (
@@ -130,6 +135,7 @@ const AddRecipe = ({ session, history }) => {
               </select>
               {errors.category && touched.category && errors.category}
             </div>
+            <FormField name='imageUrl' type='text' label='Image' />
             <div>
               <button type='submit' disabled={isSubmitting}>
                 Submit
