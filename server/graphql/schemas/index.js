@@ -62,6 +62,7 @@ exports.typeDefs = gql`
   type Mutation {
     createRecipe(recipeInput: recipeInput): Recipe
     likeRecipe(likeInput: likeInput): Recipe
+    unlikeRecipe(likeInput: likeInput): Recipe
     deleteRecipe(_id: ID!): Recipe
     userRegister(registerInput: registerInput): Token
     userLogin(loginInput: loginInput): Token
