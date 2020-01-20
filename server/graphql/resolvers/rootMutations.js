@@ -5,7 +5,14 @@ const { jwtKey } = require('../../keys')
 
 module.exports = {
   createRecipe: async (parent, { recipeInput }, { Recipe, User }) => {
-    const { name, category, description, instructions, username } = recipeInput
+    const {
+      name,
+      category,
+      description,
+      instructions,
+      username,
+      imageUrl
+    } = recipeInput
     if (!username) {
       throw new Error('You must be logged in to do that!')
     }
@@ -20,7 +27,8 @@ module.exports = {
       category,
       description,
       instructions,
-      username
+      username,
+      imageUrl
     }).save()
 
     try {

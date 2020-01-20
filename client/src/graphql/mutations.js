@@ -25,6 +25,7 @@ export const CREATE_RECIPE = gql`
     $description: String!
     $instructions: String!
     $username: String!
+    $imageUrl: String!
   ) {
     createRecipe(
       recipeInput: {
@@ -33,6 +34,7 @@ export const CREATE_RECIPE = gql`
         description: $description
         instructions: $instructions
         username: $username
+        imageUrl: $imageUrl
       }
     ) {
       _id
@@ -43,6 +45,7 @@ export const CREATE_RECIPE = gql`
       createdDate
       likes
       username
+      imageUrl
     }
   }
 `

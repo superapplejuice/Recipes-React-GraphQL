@@ -11,6 +11,7 @@ exports.typeDefs = gql`
     createdDate: String
     likes: Int
     username: String
+    imageUrl: String!
   }
 
   type User {
@@ -41,6 +42,7 @@ exports.typeDefs = gql`
     description: String!
     instructions: String!
     username: String
+    imageUrl: String!
   }
 
   input registerInput {

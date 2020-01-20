@@ -8,6 +8,7 @@ export const FETCH_RECIPES = gql`
       category
       likes
       username
+      imageUrl
     }
   }
 `
@@ -23,6 +24,7 @@ export const FETCH_RECIPE = gql`
       createdDate
       likes
       username
+      imageUrl
     }
   }
 `
@@ -38,6 +40,7 @@ export const SEARCH_RECIPES = gql`
       createdDate
       likes
       username
+      imageUrl
     }
   }
 `
@@ -64,6 +67,7 @@ export const GET_USER_RECIPES = gql`
       category
       likes
       username
+      imageUrl
     }
   }
 `
